@@ -1,0 +1,473 @@
+{
+	"info": {
+		"_postman_id": "2928dccc-4017-44cb-b039-d9ef7b2a55eb",
+		"name": "Collection_Homework_2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17572211"
+	},
+	"item": [
+		{
+			"name": "/first",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validate status code equal 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body is correct string\", () => {\r",
+							"    pm.response.to.have.body(\"This is the first responce from server!ss\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/first",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"first"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/user_info_3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response_data = pm.response.json();\r",
+							"const request_data = request.data;\r",
+							"\r",
+							"pm.test(\"Validate status code equal 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param name from response', () => {\r",
+							"    pm.expect(response_data.name).to.eql('Evgenii');\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param age from response', () => {\r",
+							"    pm.expect(+response_data.age).to.eql(31);\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param salary from response', () => {\r",
+							"    pm.expect(response_data.salary).to.eql(1500);\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param name from response equal param name from request', () => {\r",
+							"    pm.expect(response_data.name).to.eql(request_data.name);\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param age from response equal param age from request', () => {\r",
+							"    pm.expect(+response_data.age).to.eql(+request_data.age);\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param salary from response equal param salary from request', () => {\r",
+							"    pm.expect(response_data.salary).to.eql(+request_data.salary);\r",
+							"});\r",
+							"\r",
+							"console.log(response_data.family);\r",
+							"\r",
+							"pm.test('Check param u_salary_1_5_year from response equal param salary *4 from request', () => {\r",
+							"    pm.expect(response_data.family.u_salary_1_5_year).to.eql(+request_data.salary * 4);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Evgenii",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "31",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "1500",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/user_info_3",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user_info_3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/object_info_3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response_data = pm.response.json();\r",
+							"const request_data = pm.request.url.query.toObject();\r",
+							"\r",
+							"pm.test(\"Validate status code equal 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param name from response equal param name from request', () => {\r",
+							"    pm.expect(response_data.name).to.eql(request_data.name);\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param age from response equal param age from request', () => {\r",
+							"    pm.expect(+response_data.age).to.eql(+request_data.age);\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param salary from response equal param salary from request', () => {\r",
+							"    pm.expect(response_data.salary).to.eql(+request_data.salary);\r",
+							"});\r",
+							"\r",
+							"console.log(response_data.family);\r",
+							"\r",
+							"pm.test('Check param dog from response contain param name', () => {\r",
+							"    pm.expect(response_data.family.pets.dog).to.property('name');\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param dog from response contain param age', () => {\r",
+							"    pm.expect(response_data.family.pets.dog).to.property('age');\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param dog.name eql Luky', () => {\r",
+							"    pm.expect(response_data.family.pets.dog.name).to.eql('Luky');\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param dog.age eql 4', () => {\r",
+							"    pm.expect(response_data.family.pets.dog.age).to.eql(4);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/object_info_3?name={{name}}&age={{age}}&salary={{salary}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"object_info_3"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{name}}"
+						},
+						{
+							"key": "age",
+							"value": "{{age}}"
+						},
+						{
+							"key": "salary",
+							"value": "{{salary}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/object_info_4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response_data = pm.response.json();\r",
+							"const request_data = pm.request.url.query.toObject();\r",
+							"\r",
+							"pm.test(\"Validate status code equal 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param name from response equal param name from request', () => {\r",
+							"    pm.expect(response_data.name).to.eql(request_data.name);\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param age from response equal param age from request', () => {\r",
+							"    pm.expect(+response_data.age).to.eql(+request_data.age);\r",
+							"});\r",
+							"\r",
+							"console.log(request_data.salary);\r",
+							"console.log(response_data.salary);\r",
+							"console.log(response_data.salary[0]);\r",
+							"console.log(response_data.salary[1]);\r",
+							"console.log(response_data.salary[2]);\r",
+							"\r",
+							"pm.test('Check zero item param salary from response eql param salary from request', () => {\r",
+							"    pm.expect(response_data.salary[0]).to.eql(+request_data.salary);\r",
+							"});\r",
+							"\r",
+							"pm.test('Check first item param salary from response eql param salary * 2 from request', () => {\r",
+							"    pm.expect(+response_data.salary[1]).to.eql(+request_data.salary * 2);\r",
+							"});\r",
+							"\r",
+							"pm.test('Check second item param salary from response eql param salary * 3 from request', () => {\r",
+							"    pm.expect(+response_data.salary[2]).to.eql(+request_data.salary * 3);\r",
+							"});\r",
+							"\r",
+							"let name_environment = response_data.name\r",
+							"pm.environment.set(\"name\", name_environment);\r",
+							"\r",
+							"let age_environment = response_data.age\r",
+							"pm.environment.set(\"age\", age_environment);\r",
+							"\r",
+							"let salary_environment = response_data.salary\r",
+							"pm.environment.set(\"salary\", salary_environment);\r",
+							"\r",
+							"for (let i = 0; i < salary_environment.length; i++) {\r",
+							"    console.log(salary_environment[i]);\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/object_info_4?name={{name}}&age={{age}}&salary={{salary}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"object_info_4"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{name}}"
+						},
+						{
+							"key": "age",
+							"value": "{{age}}"
+						},
+						{
+							"key": "salary",
+							"value": "{{salary}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/user_info_2",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"salary\", 1500);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response_data = pm.response.json();\r",
+							"const request_data = request.data;\r",
+							"\r",
+							"let qa_salary_after_1_5_year = response_data['qa_salary_after_1.5_year']\r",
+							"let qa_salary_after_3_5_years = response_data['qa_salary_after_3.5_years']\r",
+							"\r",
+							"\r",
+							"pm.test(\"Validate status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test('Check response contain param start_qa_salary', () => {\r",
+							"    pm.expect(response_data).to.property('start_qa_salary');\r",
+							"});\r",
+							"\r",
+							"pm.test('Check response contain param qa_salary_after_6_months', () => {\r",
+							"    pm.expect(response_data).to.property('qa_salary_after_6_months');\r",
+							"});\r",
+							"\r",
+							"pm.test('Check response contain param qa_salary_after_12_months', () => {\r",
+							"    pm.expect(response_data).to.property('qa_salary_after_12_months');\r",
+							"});\r",
+							"\r",
+							"pm.test('Check response contain param qa_salary_after_1.5_year', () => {\r",
+							"    pm.expect(response_data).to.property('qa_salary_after_1.5_year');\r",
+							"});\r",
+							"\r",
+							"pm.test('Check response contain param qa_salary_after_3.5_years', () => {\r",
+							"    pm.expect(response_data).to.property('qa_salary_after_3.5_years');\r",
+							"});\r",
+							"\r",
+							"pm.test('Check response contain param person', () => {\r",
+							"    pm.expect(response_data).to.property('person');\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param start_qa_salary eql param salary from request' , () => {\r",
+							"    pm.expect(response_data.start_qa_salary).to.eql(+request_data.salary);\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param qa_salary_after_6_months eql param salary * 2 from request' , () => {\r",
+							"    pm.expect(response_data.qa_salary_after_6_months).to.eql(+request_data.salary * 2);\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param qa_salary_after_12_months eql param salary * 2.7 from request' , () => {\r",
+							"    pm.expect(response_data.qa_salary_after_12_months).to.eql(+request_data.salary * 2.7);\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param qa_salary_after_1.5_year eql param salary * 3.3 from request' , () => {\r",
+							"    pm.expect(qa_salary_after_1_5_year).to.eql(+request_data.salary * 3.3);\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param qa_salary_after_3.5_years eql param salary * 3.3 from request' , () => {\r",
+							"    pm.expect(qa_salary_after_3_5_years).to.eql(+request_data.salary * 3.8);\r",
+							"});\r",
+							"\r",
+							"pm.test('Check first item in param u_name eql param salary from request' , () => {\r",
+							"    pm.expect(response_data.person.u_name[1]).to.eql(+request_data.salary);\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param u_age from response eql param age from request' , () => {\r",
+							"    pm.expect(response_data.person.u_age).to.eql(+request_data.age);\r",
+							"});\r",
+							"\r",
+							"pm.test('Check param u_salary_5_years eql salary * 4.2 from request' , () => {\r",
+							"    pm.expect(response_data.person.u_salary_5_years).to.eql(+request_data.salary * 4.2);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{name}}",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "{{age}}",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "{{salary}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/user_info_2",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user_info_2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.environment.set(\"url\", \"http://162.55.220.72:5005\");",
+					"",
+					"pm.environment.set(\"name\", \"Evgenii\");",
+					"",
+					"pm.environment.set(\"age\", 31);",
+					"",
+					"pm.environment.set(\"salary\", 1500);",
+					"",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "name",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "age",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "salary",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "weight",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
