@@ -1,0 +1,57 @@
+[
+    {
+        "name": "Ян",
+        "age": 63,
+        "salary": 1500,
+        "weight": 87,
+        "password": 1234
+    },
+
+    {
+        "name": "Евгений",
+        "age":  18,
+        "salary": 350,
+        "weight": 250,
+        "password": 4321
+    },
+
+    {
+        "name": "Евгений",
+        "age":  17,
+        "salary": 349,
+        "weight": 250,
+        "password": 4321
+    },
+
+    {
+        "name": "Евгений",
+        "age":  19,
+        "salary": 350,
+        "weight": 250,
+        "password": 4321
+    },
+
+    {
+        "name": null,
+        "age": -1,
+        "salary": -1,
+        "weight": -87,
+        "password": null
+    },
+
+    {
+        "name": " ",
+        "age": " ",
+        "salary": " ",
+        "weight": " ",
+        "password": " "
+    },
+
+    {
+        "name": null,
+        "age": null,
+        "salary": null,
+        "weight": null,
+        "password": null
+    }
+]
